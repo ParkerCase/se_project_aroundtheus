@@ -20,6 +20,8 @@ In these grids and flexboxes, I utilized their properties to set areas, sizing p
 
 ## Link to Project
 
+https://parkercase.github.io/se_project_aroundtheus/
+
 ## Link to Video
 
 https://drive.google.com/file/d/1de0PVRkVQuu-plYuGr7EXCQB3Z_Jx0cT/view?usp=share_link
