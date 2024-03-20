@@ -5,3 +5,13 @@
   border-bottom-width: 1px;
   border-bottom-color: #545454;
 }
+
+@media screen and (min-width: 320px) and (max-width: 600px) {
+  .header {
+    margin: 0 0;
+    padding: 28px 0 32px 27px;
+  }
+  .header__vector {
+    width: 126px;
+  }
+}

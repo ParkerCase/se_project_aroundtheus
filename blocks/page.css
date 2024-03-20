@@ -16,3 +16,19 @@
   flex-direction: column;
   min-height: 100vh;
 }
+
+@media screen and (min-width: 320px) and (max-width: 600px) {
+  .page {
+    margin: 0 0;
+  }
+
+  .page__section {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 580px) and (max-width: 905px) {
+  .page__section {
+    width: calc(100% - 50px);
+  }
+}
