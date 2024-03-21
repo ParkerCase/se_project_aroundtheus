@@ -38,6 +38,10 @@
   border: none;
 }
 
+.card__like-button:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 320px) and (max-width: 600px) {
   .card {
     width: 282px;

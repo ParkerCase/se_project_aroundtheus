@@ -24,6 +24,10 @@
   border-color: white;
 }
 
+.profile__edit-button:hover {
+  cursor: pointer;
+}
+
 .profile__add-button {
   background: transparent url(../images/add-icon.svg) center no-repeat;
   height: 50px;
@@ -33,6 +37,10 @@
   border-width: 2px;
   border-radius: 2px;
   border-color: white;
+}
+
+.profile__add-button:hover {
+  cursor: pointer;
 }
 
 .profile__title {
@@ -53,6 +61,10 @@
   font-weight: 400;
   grid-area: description;
   margin: 0;
+  max-width: 400px;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 
 .profile__image {
@@ -83,6 +95,7 @@
     justify-content: center;
     width: 100%;
     align-items: baseline;
+    margin-right: 0;
   }
 
   .profile__image {
