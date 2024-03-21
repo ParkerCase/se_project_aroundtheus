@@ -1,25 +1,12 @@
-.cards {
-  margin-top: 51px;
-}
-
 .card {
   display: flex;
   flex-direction: column;
 }
 
-.card__list {
-  display: grid;
-  list-style-type: none;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, 282px);
-  grid-gap: 20px 17px;
-  margin: 0 auto;
-  padding: 0;
-}
-
 .card__image {
   width: 282px;
   height: 282px;
+  border-radius: 10px 10px 0 0;
 }
 
 .card__title {
@@ -40,6 +27,8 @@
   text-overflow: ellipsis;
   text-wrap: nowrap;
   overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .card__like-button {
@@ -50,10 +39,6 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .cards {
-    margin-top: 36px;
-  }
-
   .card {
     width: 282px;
   }

@@ -19,7 +19,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
   .page {
-    margin: 0 0;
+    margin: 0;
   }
 
   .page__section {
