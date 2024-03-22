@@ -3,7 +3,12 @@
   padding-bottom: 41px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: rgba(84, 84, 84, 1);
+  border-bottom-color: rgba(84, 84, 84, 0.7);
+}
+
+.header__vector:hover {
+  cursor: pointer;
+  opacity: 60%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {

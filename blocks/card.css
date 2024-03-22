@@ -27,8 +27,7 @@
   text-overflow: ellipsis;
   text-wrap: nowrap;
   overflow: hidden;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0 0;
 }
 
 .card__like-button {
@@ -40,6 +39,7 @@
 
 .card__like-button:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
