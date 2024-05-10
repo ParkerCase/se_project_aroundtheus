@@ -127,6 +127,7 @@
   border-radius: 2px;
   padding: 0;
   border: none;
+  cursor: pointer;
 }
 
 .modal__button_submit:hover {
@@ -137,6 +138,11 @@
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0, 0.2);
   border: solid 1px rgb(0, 0, 0, 0.2);
+  cursor: default;
+}
+
+.modal__button_submit_disabled:hover {
+  opacity: 1;
 }
 
 .modal__close {
