@@ -171,11 +171,15 @@ initializeModalEventListeners.call();
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 profileEditButton.addEventListener("click", () => {
+  editFormValidator.resetValidation();
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
 });
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
-addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+addNewCardButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
+  openModal(addCardModal);
+});
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
