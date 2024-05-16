@@ -21,14 +21,14 @@ export default class Card {
       });
 
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick();
+      this._handleImageClick(this._data);
     });
   }
 
   _handleLikeIcon() {
     this._cardElement
       .querySelector(".card__like-button")
-      .classList.toggle(".card__like-button_active");
+      .classList.toggle("card__like-button_active");
   }
 
   _handleDeleteCard() {

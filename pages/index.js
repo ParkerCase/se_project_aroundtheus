@@ -39,6 +39,8 @@ const addCardModal = document.querySelector("#add-card-modal");
 const cardImageModal = document.querySelector("#preview-card-image-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
+const previewImageTitleEl = cardImageModal.querySelector(".modal__card_title");
+const previewImage = cardImageModal.querySelector(".modal__image");
 
 // Buttons and other Dom nodes
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -133,14 +135,14 @@ function handleAddCardFormSubmit(e) {
 }
 
 // Component Card Functions
-function newCard(data) {
+function createCard(data) {
   const card = new Card(data, cardSelector, handleImageClick);
   const cardElement = card.getView();
   return cardElement;
 }
 
 function renderCard(data, wrapper) {
-  const cardElement = newCard(data);
+  const cardElement = createCard(data);
   wrapper.prepend(cardElement);
 }
 
