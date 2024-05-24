@@ -1,3 +1,5 @@
+import { cardsConfig } from "../utils/constants";
+
 export default class Card {
   constructor({ name, link }, cardSelector, handleImageClick) {
     this._data = { name, link };
@@ -8,6 +10,13 @@ export default class Card {
   }
 
   _setEventListeners() {
+    // Double check that these are the same
+    this._cardElement
+      .querySelector(cardsConfig.cardLikeButton)
+      .addEventListener("click", () => {
+        this._handleLikeIcon(this);
+      });
+
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {

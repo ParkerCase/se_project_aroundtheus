@@ -36,7 +36,11 @@
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            type="button"
+            id="profile-add-button"
+            class="profile__add-button"
+          ></button>
         </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
@@ -51,7 +55,7 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form" novalidate>
+        <form id="form-edit-profile" class="modal__form" novalidate>
           <label class="modal__label">
             <input
               type="text"
@@ -93,7 +97,12 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form" id="add-card-form" novalidate>
+        <form
+          id="form-add-card"
+          class="modal__form"
+          id="add-card-form"
+          novalidate
+        >
           <label class="modal__label">
             <input
               type="text"
