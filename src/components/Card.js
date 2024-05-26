@@ -1,5 +1,3 @@
-import { cardsConfig } from "../utils/constants";
-
 export default class Card {
   constructor({ name, link }, cardSelector, handleImageClick) {
     this._data = { name, link };
@@ -11,12 +9,6 @@ export default class Card {
 
   _setEventListeners() {
     // Double check that these are the same
-    this._cardElement
-      .querySelector(cardsConfig.cardLikeButton)
-      .addEventListener("click", () => {
-        this._handleLikeIcon(this);
-      });
-
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
@@ -42,18 +34,14 @@ export default class Card {
 
   _handleDeleteCard() {
     this._cardElement.remove();
-    this._cardElement = null;
-  }
-
-  _getTemplate() {
-    return document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNode(true);
+    this._element = null;
   }
 
   getView() {
-    this._cardElement = this._getTemplate();
+    this._cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
 
     this._cardTitle = this._cardElement.querySelector(".card__title");
     this._cardImage = this._cardElement.querySelector(".card__image");
@@ -62,10 +50,6 @@ export default class Card {
     this._cardImage.alt = this._data.link;
 
     this._setEventListeners();
-
-    //get the card view
-    //set event listeners
-    // return the card
 
     return this._cardElement;
   }

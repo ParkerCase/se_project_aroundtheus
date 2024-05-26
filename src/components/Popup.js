@@ -5,28 +5,29 @@ export default class Popup {
   }
 
   open() {
-    this._popupElement.classList.add(".modal_opened");
+    this._popupElement.classList.add("modal_opened");
     document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
-    this._popupElement.classList.remove(".modal_opened");
+    this._popupElement.classList.remove("modal_opened");
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
   _handleEscClose(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     if (evt.key === "Escape") {
       this.close();
     }
   }
 
   setEventListeners() {
-    this._popupElement.addEventListeners("click", (evt) => {
-      if (
-        evt.target.classList.contains("modal") ||
-        evt.target.classList.contains("modal__close")
-      ) {
+    const _closeButton = this._popupElement.querySelector(".modal__close");
+    _closeButton.addEventListener("click", () => {
+      this.close();
+    });
+    this._popupElement.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("modal_opened")) {
         this.close();
       }
     });
