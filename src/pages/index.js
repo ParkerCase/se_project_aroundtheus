@@ -80,13 +80,14 @@ profileEditModal.setEventListeners();
 function handleProfileEditSubmit(inputValues) {
   console.log(inputValues);
   userInfo.setUserInfo(inputValues);
-  editFormValidator._toggleButtonState(inputValues);
+  editFormValidator.resetValidation(inputValues);
   profileEditModal.close();
 }
 
 function handleAddCardFormSubmit(inputValues) {
   section._renderer(inputValues);
-  addFormValidator._toggleButtonState(inputValues);
+  addFormValidator.enableValidation(inputValues);
+
   addCardModal.close();
 }
 
