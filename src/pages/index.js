@@ -1,4 +1,3 @@
-import ".//index.css";
 import "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -7,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
+import ".//index.css";
 
 // Card class constants
 // const cardTemplate = document.querySelector("#card-template");
@@ -78,6 +78,7 @@ const profileEditModal = new PopupWithForm(
 profileEditModal.setEventListeners();
 
 function handleProfileEditSubmit(inputValues) {
+  console.log(inputValues);
   userInfo.setUserInfo(inputValues);
   editFormValidator._toggleButtonState(inputValues);
   profileEditModal.close();
