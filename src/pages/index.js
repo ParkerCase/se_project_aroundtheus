@@ -34,13 +34,6 @@ const renderCard = (data) => {
   section.addItem(cardElement);
 };
 
-// renderer: renderCard,
-
-// handleFormSubmit: (item) => {
-//   renderCard(item);
-//   ...
-// }
-
 const section = new Section(
   {
     items: initialCards,
@@ -95,7 +88,6 @@ function handleProfileEditSubmit(inputValues) {
 
 function handleAddCardFormSubmit(inputValues) {
   renderCard(inputValues);
-  // section._renderer(inputValues);
   addFormValidator.enableValidation(inputValues);
 
   addCardModal.close();
