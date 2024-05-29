@@ -29,13 +29,22 @@ const profileDescriptionInput = document.querySelector(
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileAddNewCardButton = document.querySelector("#profile-add-button");
 
+const renderCard = (data) => {
+  const cardElement = createCard(data);
+  section.addItem(cardElement);
+};
+
+// renderer: renderCard,
+
+// handleFormSubmit: (item) => {
+//   renderCard(item);
+//   ...
+// }
+
 const section = new Section(
   {
     items: initialCards,
-    renderer: (data) => {
-      const cardElement = createCard(data);
-      section.addItem(cardElement);
-    },
+    renderer: renderCard,
   },
   ".cards__list"
 );
@@ -85,7 +94,8 @@ function handleProfileEditSubmit(inputValues) {
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  section._renderer(inputValues);
+  renderCard(inputValues);
+  // section._renderer(inputValues);
   addFormValidator.enableValidation(inputValues);
 
   addCardModal.close();
