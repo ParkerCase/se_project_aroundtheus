@@ -8,20 +8,9 @@ import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
 import ".//index.css";
 
-// Card class constants
-// const cardTemplate = document.querySelector("#card-template");
-// const cardList = document.querySelector(".cards__list");
-// cardTemplate: document.querySelector("#card-template").content.firstElementChild;
-
-// const previewImagePopup = document.querySelector("#preview-card-image-modal");
-// const addCardPopup = document.querySelector("#add-card-modal");
-// const profileEditPopup = document.querySelector("#profile-edit-button-modal");
-
 const editFormElement = document.querySelector("#form-edit-profile");
 const addFormElement = document.querySelector("#form-add-card");
 
-// const profileTitle = document.querySelector(".profile__title");
-// const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
@@ -88,7 +77,7 @@ function handleProfileEditSubmit(inputValues) {
 
 function handleAddCardFormSubmit(inputValues) {
   renderCard(inputValues);
-  addFormValidator.enableValidation(inputValues);
+  addFormValidator.resetValidation(inputValues);
 
   addCardModal.close();
 }

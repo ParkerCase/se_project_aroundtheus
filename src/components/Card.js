@@ -8,7 +8,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    // Double check that these are the same
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
