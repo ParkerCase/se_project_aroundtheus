@@ -1,4 +1,5 @@
 import "../images/jacques-cousteau.jpg";
+import API from "../components/API.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -18,30 +19,50 @@ const profileDescriptionInput = document.querySelector(
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileAddNewCardButton = document.querySelector("#profile-add-button");
 
+const api = new API({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "77570098-8218-4305-94d2-93e61885b891",
+    "Content-Type": "application/json",
+  },
+});
+
+let section;
+let userInfo;
+
+document.addEventListener("DOMContentLoaded", () => {
+  Promise.all([api.getCurrentUserInfo(), api.getInitialCards()]).then(
+    ([inputValues, data]) => {
+      userInfo = new UserInfo({
+        nameSelector: ".profile__title",
+        jobSelector: ".profile__description",
+        avatarSelector: ".profile__image",
+      });
+      userInfo.setUserInfo(inputValues);
+      userInfo.setUserInfo(inputValues.avatar);
+
+      section = new Section(
+        {
+          items: initialCards,
+          renderer: renderCard,
+        },
+        ".cards__list"
+      );
+      section.renderItems(data);
+    }
+  );
+});
+
 const renderCard = (data) => {
   const cardElement = createCard(data);
   section.addItem(cardElement);
 };
-
-const section = new Section(
-  {
-    items: initialCards,
-    renderer: renderCard,
-  },
-  ".cards__list"
-);
-section.renderItems();
 
 function createCard(data) {
   const card = new Card(data, "#card-template", handleImageClick);
   const cardEl = card.getView(data);
   return cardEl;
 }
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
 
 function handleImageClick(data) {
   previewImageModal.open(data);
@@ -69,17 +90,33 @@ const profileEditModal = new PopupWithForm(
 profileEditModal.setEventListeners();
 
 function handleProfileEditSubmit(inputValues) {
-  console.log(inputValues);
-  userInfo.setUserInfo(inputValues);
-  editFormValidator.resetValidation(inputValues);
-  profileEditModal.close();
+  api
+    .updateProfileInfo({
+      name: inputValues.name,
+      about: inputValues.description,
+    })
+    .then(() => {
+      console.log(inputValues);
+      userInfo.setUserInfo(inputValues);
+      editFormValidator.resetValidation(inputValues);
+      profileEditModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function handleAddCardFormSubmit(inputValues) {
-  renderCard(inputValues);
-  addFormValidator.resetValidation(inputValues);
-
-  addCardModal.close();
+  api
+    .createACard({ name: inputValues.title, link: inputValues.url })
+    .then(() => {
+      renderCard(inputValues);
+      addFormValidator.resetValidation(inputValues);
+      addCardModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 const editFormValidator = new FormValidator(
