@@ -12,12 +12,23 @@ import ".//index.css";
 const editFormElement = document.querySelector("#form-edit-profile");
 const addFormElement = document.querySelector("#form-add-card");
 
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
+// const profileTitleInput = document.querySelector("#profile-title-input");
+// const profileDescriptionInput = document.querySelector(
+//   "#profile-description-input"
+// );
+
+// const modalImageInput = document.querySelector("#modal-input-type-title");
+// const modalLinkInput = document.querySelector("#modal-input-type-url");
+
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileAddNewCardButton = document.querySelector("#profile-add-button");
+
+const inputValue = {
+  name: document.querySelector("#profile-title-input"),
+  description: document.querySelector("#profile-description-input"),
+  title: document.querySelector("#modal-input-type-title"),
+  about: document.querySelector("#modal-input-type-url"),
+};
 
 const api = new API({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -32,14 +43,14 @@ let userInfo;
 
 document.addEventListener("DOMContentLoaded", () => {
   Promise.all([api.getCurrentUserInfo(), api.getInitialCards()]).then(
-    ([inputValues, data]) => {
+    ([inputValue, data]) => {
       userInfo = new UserInfo({
         nameSelector: ".profile__title",
         jobSelector: ".profile__description",
         avatarSelector: ".profile__image",
       });
-      userInfo.setUserInfo(inputValues);
-      userInfo.setUserInfo(inputValues.avatar);
+      userInfo.setUserInfo(inputValue);
+      userInfo.setUserInfo(inputValue.avatar);
 
       section = new Section(
         {
@@ -89,16 +100,17 @@ const profileEditModal = new PopupWithForm(
 );
 profileEditModal.setEventListeners();
 
-function handleProfileEditSubmit(inputValues) {
+function handleProfileEditSubmit(inputValue) {
+  console.log("Input Values:", inputValue);
   api
     .updateProfileInfo({
-      name: inputValues.name,
-      about: inputValues.description,
+      title: inputValue.name,
+      description: inputValue.description,
     })
     .then(() => {
-      console.log(inputValues);
-      userInfo.setUserInfo(inputValues);
-      editFormValidator.resetValidation(inputValues);
+      console.log(inputValue);
+      userInfo.setUserInfo(inputValue);
+      editFormValidator.resetValidation(inputValue);
       profileEditModal.close();
     })
     .catch((err) => {
@@ -106,12 +118,12 @@ function handleProfileEditSubmit(inputValues) {
     });
 }
 
-function handleAddCardFormSubmit(inputValues) {
+function handleAddCardFormSubmit(inputValue) {
   api
-    .createACard({ name: inputValues.title, link: inputValues.url })
+    .createACard({ name: inputValue.title, link: inputValue.about })
     .then(() => {
-      renderCard(inputValues);
-      addFormValidator.resetValidation(inputValues);
+      renderCard(inputValue);
+      addFormValidator.resetValidation(inputValue);
       addCardModal.close();
     })
     .catch((err) => {
@@ -131,8 +143,8 @@ addFormValidator.enableValidation();
 profileEditButton.addEventListener("click", () => {
   editFormValidator.resetValidation();
   const currentUserInfo = userInfo.getUserInfo();
-  profileTitleInput.value = currentUserInfo.name;
-  profileDescriptionInput.value = currentUserInfo.description;
+  inputValue.name.value = currentUserInfo.name;
+  inputValue.description.value = currentUserInfo.description;
   profileEditModal.open();
 });
 

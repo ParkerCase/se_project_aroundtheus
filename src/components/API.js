@@ -23,14 +23,11 @@ export default class Api {
     });
   }
   // Patch or update profile info (Doctor this up too)
-  updateProfileInfo({ name, about }) {
+  updateProfileInfo({ title, description }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
-      body: JSON.stringify({
-        name,
-        about,
-      }),
+      body: JSON.stringify({ title, description }),
     });
   }
   // Patch and update avatar
