@@ -8,6 +8,8 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
 import ".//index.css";
+// import Popup from "../components/Popup.js";
+import PopupConfirmDelete from "../components/PopupConfirmDelete.js";
 
 const editFormElement = document.querySelector("#form-edit-profile");
 const addFormElement = document.querySelector("#form-add-card");
@@ -22,6 +24,7 @@ const addFormElement = document.querySelector("#form-add-card");
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileAddNewCardButton = document.querySelector("#profile-add-button");
+// const deleteCardButton = document.querySelector("#delete-button");
 
 const inputValue = {
   name: document.querySelector("#profile-title-input"),
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         jobSelector: ".profile__description",
         avatarSelector: ".profile__image",
       });
-      userInfo.setUserInfo(inputValue);
+      userInfo.setUserInfo(inputValue.name, inputValue.description);
       userInfo.setUserInfo(inputValue.avatar);
 
       section = new Section(
@@ -70,7 +73,7 @@ const renderCard = (data) => {
 };
 
 function createCard(data) {
-  const card = new Card(data, "#card-template", handleImageClick);
+  const card = new Card(data, "#card-template", handleImageClick, handleDelete);
   const cardEl = card.getView(data);
   return cardEl;
 }
@@ -120,11 +123,29 @@ function handleProfileEditSubmit(inputValue) {
 
 function handleAddCardFormSubmit(inputValue) {
   api
-    .createACard({ name: inputValue.title, link: inputValue.about })
+    .createACard({ title: inputValue.title, url: inputValue.about })
     .then(() => {
       renderCard(inputValue);
       addFormValidator.resetValidation(inputValue);
       addCardModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+const deleteImageModal = new PopupConfirmDelete("#confirm-popup", (card) =>
+  handleDelete(card)
+);
+deleteImageModal.setEventListeners();
+
+function handleDelete(card) {
+  deleteImageModal.open();
+  api
+    .deleteCard(card.Id)
+    .then(() => {
+      card._handleDeleteCard();
+      deleteImageModal.close();
     })
     .catch((err) => {
       console.error(err);
