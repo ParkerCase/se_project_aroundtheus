@@ -211,8 +211,9 @@ function createACard(data) {
     handleImageClick,
     handleDeleteClick,
     handleLikeClicks
-  ).getView();
-  return card;
+  );
+  const cardEl = card.getView();
+  return cardEl;
 }
 
 function renderCard(cardData) {
