@@ -7,14 +7,14 @@
       content="width=device-width, user-scalable=no,
     initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
     <title>Around the US</title>
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="<%= require('./images/logo.svg')%>"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the U.S. logo"
           class="header__vector"
         />
@@ -23,13 +23,13 @@
         <section class="profile page__section">
           <div class="profile__avatar">
             <img
-              src="<%= require('./images/jacques-cousteau.jpg')%>"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Avatar"
               class="profile__image"
             />
             <button
               type="button"
-              id="profile-edit-image-button"
+              id="avatar-button"
               class="profile__image_edit-button"
             ></button>
           </div>
@@ -151,44 +151,32 @@
       </div>
     </div>
 
-    <div id="confirm-popup" class="modal">
+    <div id="confirm-delete-modal" class="modal">
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Are you sure?</h2>
-        <form id="form-confirm-delete" class="modal__form" novalidate>
-          <button
-            class="modal__button_submit modal__button_delete"
-            type="submit"
-            disabled
-          >
+          <button class="modal__button_submit modal__button_delete">
             Yes
           </button>
         </form>
       </div>
     </div>
 
-    <div id="change-avatar-popup" class="modal">
+    <div id="change-avatar-modal" class="modal">
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Change profile picture</h2>
-        <form
-          id="form-add-card"
-          class="modal__form"
-          id="add-card-form"
-          novalidate
-        >
-          <label class="modal__label">
+        <form class="modal__form" id="form-avatar" name="avatarForm">
             <input
               type="url"
-              name="url"
+              name="avatar"
               id="modal-input-avatar-url"
               class="modal__input"
               placeholder="Avatar URL"
               required
             />
-            <span class="modal__error" id="modal-input-type-url-error"></span>
-          </label>
-          <button class="modal__button_submit" type="submit" disabled>
+            <span class="modal__error" id="avatar-input-type-url-error"></span>
+          <button class="modal__button_submit" id="avatar-modal-button" disabled>
             Save
           </button>
         </form>

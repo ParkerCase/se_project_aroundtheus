@@ -11,28 +11,30 @@ export default class Api {
     return Promise.reject(`Error ${res.status}`);
   }
 
-  // Get current users info
   getCurrentUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleRes);
   }
 
-  // Patch or update profile info (Doctor this up too)
+  // Error
   updateProfileInfo({ title, description }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify({ name: title, about: description }),
+      body: JSON.stringify({
+        name: title,
+        about: description,
+      }),
     }).then(this._handleRes);
   }
   // Patch and update avatar
-  updateAvatar(avatar) {
+  updateAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar,
+        avatar: avatar,
       }),
     }).then(this._handleRes);
   }
@@ -48,30 +50,36 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        title: title,
-        about: url,
+        name: title,
+        link: url,
       }),
     }).then(this._handleRes);
   }
   // DELETE card
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleRes);
   }
   // PUT or like a card
-  likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  likeCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: "PUT",
       headers: this._headers,
+      body: JSON.stringify({
+        isLiked: true,
+      }),
     }).then(this._handleRes);
   }
   // Dislike and Delete
-  dislikeCard() {
-    return fetch(`${this._baseUrl}/cards`, {
+  dislikeCard(cardID) {
+    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
       method: "DELETE",
       headers: this._headers,
+      body: JSON.stringify({
+        isLiked: false,
+      }),
     }).then(this._handleRes);
   }
 }

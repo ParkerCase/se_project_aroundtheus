@@ -8,10 +8,10 @@ class PopupWithImage extends Popup {
   }
 
   // Figure this out
-  open({ title, url }) {
-    this._previewImage.src = url.link;
-    this._previewImage.alt = title.title;
-    this._previewTitle.textContent = title.title;
+  open(cardData) {
+    this._previewImage.src = cardData.link;
+    this._previewImage.alt = cardData.name;
+    this._previewTitle.textContent = cardData.name;
 
     super.open();
   }
