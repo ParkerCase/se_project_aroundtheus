@@ -42,7 +42,7 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    });
+    }).then(this._handleRes);
   }
   // Post cards
   createACard({ title, url }) {

@@ -206,7 +206,7 @@ function handleLikeClicks(card) {
 
 function createACard(data) {
   const card = new Card(
-    { data },
+    data,
     "#card-template",
     handleImageClick,
     handleDeleteClick,
