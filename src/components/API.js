@@ -56,15 +56,15 @@ export default class Api {
     }).then(this._handleRes);
   }
   // DELETE card
-  deleteCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}`, {
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleRes);
   }
   // PUT or like a card
-  likeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+  likeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
       body: JSON.stringify({
@@ -73,8 +73,8 @@ export default class Api {
     }).then(this._handleRes);
   }
   // Dislike and Delete
-  dislikeCard(cardID) {
-    return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
+  dislikeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
       body: JSON.stringify({

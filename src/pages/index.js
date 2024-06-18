@@ -21,7 +21,6 @@ import {
 import ".//index.css";
 
 let section;
-let cardToDelete;
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -52,10 +51,7 @@ const profileEditModal = new PopupWithForm(
 );
 profileEditModal.setEventListeners();
 
-const deleteImageModal = new PopupConfirmDelete(
-  "#confirm-delete-modal",
-  handleDeleteConfirmation
-);
+const deleteImageModal = new PopupConfirmDelete("#confirm-delete-modal");
 deleteImageModal.setEventListeners();
 
 const avatarModal = new PopupWithForm(
@@ -91,7 +87,7 @@ api
     section = new Section(
       {
         items: cards,
-        renderer: renderCard(),
+        renderer: renderCard,
       },
       ".cards__list"
     );
@@ -160,25 +156,6 @@ function handleImageClick(cardData) {
   previewImageModal.open(cardData);
 }
 
-function handleDeleteClick(card) {
-  deleteImageModal.open();
-  cardToDelete = card;
-}
-
-function handleDeleteConfirmation() {
-  if (cardToDelete) {
-    api
-      .deleteCard(cardToDelete._id)
-      .then(() => {
-        cardToDelete.handleDeleteCard();
-        deleteImageModal.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-}
-
 function handleLikeClicks(card) {
   if (card.isLiked) {
     api
@@ -204,12 +181,28 @@ function handleLikeClicks(card) {
   }
 }
 
+function handleDeleteSubmit(card) {
+  deleteImageModal.open();
+  console.log(card._id);
+  deleteImageModal.handleDelete(() => {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        card.handleDeleteCard();
+        deleteImageModal.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
 function createACard(data) {
   const card = new Card(
     data,
     "#card-template",
     handleImageClick,
-    handleDeleteClick,
+    handleDeleteSubmit,
     handleLikeClicks
   );
   const cardEl = card.getView();

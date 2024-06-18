@@ -154,8 +154,9 @@
     <div id="confirm-delete-modal" class="modal">
       <div class="modal__container">
         <button class="modal__close"></button>
+        <form class="modal__form" id="form-delete" name="deleteForm"></form>
         <h2 class="modal__heading">Are you sure?</h2>
-          <button class="modal__button_submit modal__button_delete">
+          <button type="submit" class="modal__button_delete">
             Yes
           </button>
         </form>
@@ -176,7 +177,7 @@
               required
             />
             <span class="modal__error" id="avatar-input-type-url-error"></span>
-          <button class="modal__button_submit" id="avatar-modal-button" disabled>
+          <button class="modal__button_submit" id="avatar-modal-button" type="submit" disabled>
             Save
           </button>
         </form>
