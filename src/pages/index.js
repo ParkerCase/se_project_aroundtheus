@@ -188,7 +188,7 @@ function handleDeleteSubmit(card) {
     api
       .deleteCard(card._id)
       .then(() => {
-        card.handleDeleteCard();
+        card.deleteCard();
         deleteImageModal.close();
       })
       .catch((err) => {
