@@ -43,7 +43,7 @@ export default class Card {
 
   handleDeleteCard() {
     this._cardElement.remove();
-    this._cardElement = null;
+    this._element = null;
   }
 
   getView() {

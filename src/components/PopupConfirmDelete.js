@@ -11,10 +11,11 @@ export default class PopupConfirmDelete extends Popup {
   }
 
   setEventListeners() {
+    super.setEventListeners();
+
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       this._handleDeleteSubmit();
     });
-    super.setEventListeners();
   }
 }

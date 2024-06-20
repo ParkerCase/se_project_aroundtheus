@@ -17,6 +17,7 @@ import {
   avatarButton,
   profileDescriptionInput,
   profileTitleInput,
+  deleteCardButton,
 } from "../utils/constants.js";
 import ".//index.css";
 
@@ -140,7 +141,6 @@ function handleChangeAvatar(inputValues) {
     .then((res) => {
       userInfo.setAvatarInfo(res);
       avatarModal.close();
-      avatarFormElement.resetValidation();
       avatarFormValidator.disableSubmit();
     })
     .catch((err) => {
@@ -192,7 +192,7 @@ function handleDeleteSubmit(card) {
         deleteImageModal.close();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   });
 }

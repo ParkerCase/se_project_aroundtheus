@@ -154,11 +154,9 @@
     <div id="confirm-delete-modal" class="modal">
       <div class="modal__container">
         <button class="modal__close"></button>
-        <form class="modal__form" id="form-delete" name="deleteForm"></form>
-        <h2 class="modal__heading">Are you sure?</h2>
-          <button type="submit" class="modal__button_delete">
-            Yes
-          </button>
+        <form class="modal__form" id="form-delete" name="deleteForm">            <h3 class="modal__heading-delete">Are you sure?</h3>
+          <button type="submit" id="delete-card-button" class="modal__button_delete">    Yes   </button>
+        </form>            
         </form>
       </div>
     </div>
@@ -167,16 +165,23 @@
       <div class="modal__container">
         <button class="modal__close"></button>
         <h2 class="modal__heading">Change profile picture</h2>
-        <form class="modal__form" id="form-avatar" name="avatarForm">
+        <form 
+        class="modal__form" 
+        id="form-avatar" 
+        name="avatarForm" 
+        novalidate
+        >
+        <label class="modal__label">
             <input
               type="url"
               name="avatar"
-              id="modal-input-avatar-url"
+              id="modal-input-type-avatar"
               class="modal__input"
               placeholder="Avatar URL"
               required
             />
-            <span class="modal__error" id="avatar-input-type-url-error"></span>
+            <span class="modal__error" id="modal-input-type-avatar-error"></span>
+            </label>
           <button class="modal__button_submit" id="avatar-modal-button" type="submit" disabled>
             Save
           </button>

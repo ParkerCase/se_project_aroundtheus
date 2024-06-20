@@ -49,4 +49,5 @@ export const profileDescriptionInput = document.querySelector(
 );
 export const cardTitleInput = document.querySelector("#modal-input-type-title");
 export const cardLinkInput = document.querySelector("#modal-input-type-url");
-export const avatarInput = document.querySelector("#modal-input-avatar-url");
+export const avatarInput = document.querySelector("#modal-input-type-avatar");
+export const deleteCardButton = document.querySelector("#delete-card-button");
