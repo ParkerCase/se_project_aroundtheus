@@ -1,27 +1,27 @@
 export const initialCards = [
   {
-    title: "Yosemite Valley",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
   {
-    title: "Lake Louise",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
   {
-    title: "Bald Mountains",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+    name: "Bald Mountains",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
   {
-    title: "Latemar",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
   {
-    title: "Vanoise National Park",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   },
   {
-    title: "Lago di Braies",
-    url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
 
@@ -32,3 +32,22 @@ export const validationSettings = {
   inputErrorClass: "modal__input-error",
   errorClass: "modal__error_visible",
 };
+
+export const editFormElement = document.querySelector("#form-edit-profile");
+export const addFormElement = document.querySelector("#form-add-card");
+export const avatarFormElement = document.querySelector("#form-avatar");
+
+export const profileEditButton = document.querySelector("#profile-edit-button");
+export const profileAddNewCardButton = document.querySelector(
+  "#profile-add-button"
+);
+export const avatarButton = document.querySelector("#avatar-button");
+
+export const profileTitleInput = document.querySelector("#profile-title-input");
+export const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
+export const cardTitleInput = document.querySelector("#modal-input-type-title");
+export const cardLinkInput = document.querySelector("#modal-input-type-url");
+export const avatarInput = document.querySelector("#modal-input-type-avatar");
+export const deleteCardButton = document.querySelector("#delete-card-button");

@@ -7,10 +7,11 @@ class PopupWithImage extends Popup {
     this._previewTitle = this._popupElement.querySelector(".modal__card_title");
   }
 
-  open(data) {
-    this._previewImage.src = data.url;
-    this._previewImage.alt = data.title;
-    this._previewTitle.textContent = data.title;
+  // Figure this out
+  open(cardData) {
+    this._previewImage.src = cardData.link;
+    this._previewImage.alt = cardData.name;
+    this._previewTitle.textContent = cardData.name;
 
     super.open();
   }
