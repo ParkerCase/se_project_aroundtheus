@@ -122,10 +122,8 @@ function handleAddCardFormSubmit(inputValues) {
     .createACard(inputValues)
     .then((res) => {
       renderCard(res);
-      // addFormElement.resetValidation();
       addFormValidator.disableSubmit();
       addCardModal.close();
-      // the code below this is only if the one above does not work
       addCardModal.reset();
     })
     .catch((err) => {
@@ -187,6 +185,8 @@ function handleDeleteSubmit(card) {
   deleteImageModal.open();
   console.log(card.id);
   deleteImageModal.handleDelete(() => {
+    deleteImageModal.renderDeleting(true);
+
     api
       .deleteCard(card.id)
       .then(() => {
@@ -195,6 +195,9 @@ function handleDeleteSubmit(card) {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        deleteImageModal.renderDeleting(false);
       });
   });
 }
