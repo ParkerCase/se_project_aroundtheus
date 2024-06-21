@@ -122,9 +122,11 @@ function handleAddCardFormSubmit(inputValues) {
     .createACard(inputValues)
     .then((res) => {
       renderCard(res);
-      addCardModal.close();
-      addFormElement.resetValidation();
+      // addFormElement.resetValidation();
       addFormValidator.disableSubmit();
+      addCardModal.close();
+      // the code below this is only if the one above does not work
+      addCardModal.reset();
     })
     .catch((err) => {
       console.log(err);
@@ -141,6 +143,8 @@ function handleChangeAvatar(inputValues) {
     .then((res) => {
       userInfo.setAvatarInfo(res);
       avatarModal.close();
+      avatarFormElement.resetValidation();
+
       avatarFormValidator.disableSubmit();
     })
     .catch((err) => {
@@ -159,10 +163,9 @@ function handleImageClick(cardData) {
 function handleLikeClicks(card) {
   if (card.isLiked) {
     api
-      .dislikeCard(card._id)
-      .then((newCardData) => {
-        card.isLiked = newCardData.isLiked;
-        card.renderLikes();
+      .dislikeCard(card.id)
+      .then(() => {
+        card.setIsLiked(false);
       })
       .catch((err) => {
         console.log(err);
@@ -170,10 +173,9 @@ function handleLikeClicks(card) {
   }
   if (!card.isLiked) {
     api
-      .likeCard(card._id)
-      .then((newCardData) => {
-        card.isLiked = newCardData.isLiked;
-        card.renderLikes();
+      .likeCard(card.id)
+      .then(() => {
+        card.setIsLiked(true);
       })
       .catch((err) => {
         console.log(err);
@@ -183,10 +185,10 @@ function handleLikeClicks(card) {
 
 function handleDeleteSubmit(card) {
   deleteImageModal.open();
-  console.log(card._id);
+  console.log(card.id);
   deleteImageModal.handleDelete(() => {
     api
-      .deleteCard(card._id)
+      .deleteCard(card.id)
       .then(() => {
         card.deleteCard();
         deleteImageModal.close();

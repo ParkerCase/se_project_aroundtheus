@@ -219,9 +219,20 @@
     width: 238px;
   }
 
-  .modal__button {
+  .modal__button_submit {
     width: 238px;
     height: 46px;
     margin-top: 15px;
+  }
+
+  .modal__button_delete {
+    width: 238px;
+    height: 46px;
+    margin-top: 15px;
+  }
+
+  .modal__image {
+    width: 75vw;
+    height: 75vh;
   }
 }
